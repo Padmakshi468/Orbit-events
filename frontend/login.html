@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign In — Orbit</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="login">
+
+  <div class="auth-page">
+
+    <!-- Form Panel -->
+    <div class="auth-panel auth-panel--form">
+      <div class="auth-card">
+
+        <div class="auth-logo">⬤ Orbit</div>
+        <h1 class="auth-title">Welcome back</h1>
+        <p class="auth-subtitle">Sign in to access your events and dashboard.</p>
+
+        <form id="login-form" novalidate autocomplete="on">
+
+          <div class="form-group">
+            <label for="email">Email address</label>
+            <input type="email" id="email" placeholder="you@example.com" autocomplete="email" required>
+          </div>
+
+          <div class="form-group">
+            <label for="password">Password</label>
+            <div class="input-wrapper">
+              <input type="password" id="password" placeholder="Your password" autocomplete="current-password" required>
+              <button type="button" class="password-toggle" aria-label="Toggle password visibility">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                  <circle cx="12" cy="12" r="3"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <div style="display:flex; justify-content:flex-end; margin-bottom:1.5rem;">
+            <a href="#" style="font-size:.85rem; color:var(--brand);">Forgot password?</a>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+        </form>
+
+        <div class="auth-link">
+          Don't have an account? <a href="register.html">Create one free</a>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Visual Panel -->
+    <div class="auth-panel auth-panel--visual">
+      <div class="auth-visual-blob blob-1"></div>
+      <div class="auth-visual-blob blob-2"></div>
+      <div class="auth-visual-content">
+        <div style="font-size:3.5rem; margin-bottom:1.5rem;">🎟️</div>
+        <h2>Your events,<br>all in one place</h2>
+        <p style="margin-top:1rem;">Manage bookings, track attendance, and discover events — seamlessly with Orbit.</p>
+        <div style="margin-top:3rem; display:flex; flex-direction:column; gap:.85rem; text-align:left;">
+          <div style="display:flex; align-items:center; gap:.75rem; color:rgba(255,255,255,.8); font-size:.9rem;">
+            <span style="background:rgba(255,255,255,.15); border-radius:8px; padding:.3rem .6rem;">✓</span>
+            Persistent login — stay signed in
+          </div>
+          <div style="display:flex; align-items:center; gap:.75rem; color:rgba(255,255,255,.8); font-size:.9rem;">
+            <span style="background:rgba(255,255,255,.15); border-radius:8px; padding:.3rem .6rem;">✓</span>
+            Secure JWT authentication
+          </div>
+          <div style="display:flex; align-items:center; gap:.75rem; color:rgba(255,255,255,.8); font-size:.9rem;">
+            <span style="background:rgba(255,255,255,.15); border-radius:8px; padding:.3rem .6rem;">✓</span>
+            QR code booking confirmation
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="js/auth.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

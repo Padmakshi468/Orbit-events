@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Orbit — The gravity of great gatherings</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="home">
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <a class="navbar-brand" href="index.html">⬤ Orbit</a>
+    <button class="navbar-hamburger" id="hamburger" aria-label="Menu">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+        <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
+      </svg>
+    </button>
+    <ul class="navbar-links" id="nav-links">
+      <li><a href="index.html" class="active">Home</a></li>
+      <li data-auth="user"><a href="dashboard.html">Dashboard</a></li>
+      <li data-auth="user"><a href="event-list.html">Events</a></li>
+      <li data-auth="guest"><a href="login.html">Sign In</a></li>
+      <li data-auth="guest"><a href="register.html" class="nav-btn">Get Started</a></li>
+      <li data-auth="user">
+        <span class="nav-user-name" data-user-name>User</span>
+      </li>
+      <li data-auth="user">
+        <a href="#" data-action="logout" class="nav-btn" style="background:transparent!important;color:var(--error)!important;border:1.5px solid var(--error)!important;">Logout</a>
+      </li>
+    </ul>
+  </nav>
+
+  <!-- Hero -->
+  <header class="hero">
+    <div class="hero-content">
+      <div class="hero-eyebrow">✦ Event Management Platform</div>
+      <h1>The <span>gravity</span> of great gatherings</h1>
+      <p>Discover, create, and manage events that bring people together. From tech meetups to workshops — Orbit has you covered.</p>
+      <div class="hero-cta">
+        <a href="register.html" class="btn-hero-primary" id="cta-btn">Get Started Free</a>
+        <a href="event-list.html" class="btn-hero-outline">Browse Events</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Highlight bar -->
+  <div class="highlight-bar">
+    🚀 Hundreds are attending events through Orbit every month — join the community!
+  </div>
+
+  <!-- Reviews Section -->
+  <section class="section" style="background: var(--bg);">
+    <div class="container">
+      <h2 class="section-title">What people say about Orbit</h2>
+      <p class="section-sub">Real reviews from real attendees across India</p>
+      <div class="reviews-grid">
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"Attended the Orbit Startup Hackathon — super well organized, no endless waiting. Met amazing people and built something real!"</p>
+          <div class="review-author">Aarav Sharma</div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"Joined the English Speaking Workshop via Orbit. Small group, friendly vibe, and I walked out speaking way more confidently."</p>
+          <div class="review-author">Meera Patel</div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"Orbit's Design Meetup was packed with ideas I can actually use in my job. Loved the hands-on tasks and the energy!"</p>
+          <div class="review-author">Dev Khanna</div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">★★★★☆</div>
+          <p class="review-text">"Signed up for Orbit's Cybersecurity Bootcamp. Sessions were clear and practical — not over-technical, just enough to make sense."</p>
+          <div class="review-author">Ria Nambiar</div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"Orbit brought together speakers who actually know their stuff. I came for one event, but now I keep checking what's next."</p>
+          <div class="review-author">Karthik Menon</div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"The Product Strategy session gave me simple, actionable advice — no fancy jargon, just solid insights I could use on day one."</p>
+          <div class="review-author">Alisha Roy</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Roles Section -->
+  <section class="section" style="background: var(--bg-card); border-top: 1px solid var(--border);">
+    <div class="container">
+      <h2 class="section-title">Built for every role</h2>
+      <p class="section-sub">Whether you organize, attend, or manage — Orbit has the right tools for you</p>
+      <div class="roles-grid">
+        <div class="role-item">
+          <div class="role-icon">🛡️</div>
+          <h4>Admin</h4>
+        </div>
+        <div class="role-item">
+          <div class="role-icon">🎯</div>
+          <h4>Organizer</h4>
+        </div>
+        <div class="role-item">
+          <div class="role-icon">🙋</div>
+          <h4>Attendee</h4>
+        </div>
+        <div class="role-item">
+          <div class="role-icon">📲</div>
+          <h4>Scanner</h4>
+        </div>
+        <div class="role-item">
+          <div class="role-icon">🎭</div>
+          <h4>Multi-role</h4>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 Orbit Event Platform. All rights reserved.</p>
+  </footer>
+
+  <script src="js/auth.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    // Hamburger menu
+    document.getElementById('hamburger')?.addEventListener('click', () => {
+      document.getElementById('nav-links')?.classList.toggle('nav-open');
+    });
+  </script>
+</body>
+</html>

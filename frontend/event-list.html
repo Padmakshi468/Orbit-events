@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Events — Orbit</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="events">
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <a class="navbar-brand" href="dashboard.html">⬤ Orbit</a>
+    <ul class="navbar-links">
+      <li><a href="dashboard.html">Dashboard</a></li>
+      <li><a href="event-list.html" class="active">Events</a></li>
+      <li><span class="nav-user-name" data-user-name>User</span></li>
+      <li><a href="#" data-action="logout" class="nav-btn" style="background:transparent!important;color:var(--error)!important;border:1.5px solid var(--error)!important;">Logout</a></li>
+    </ul>
+  </nav>
+
+  <div class="app-layout">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-label">Navigation</div>
+      <a href="dashboard.html" class="sidebar-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+        Dashboard
+      </a>
+      <a href="event-list.html" class="sidebar-link active">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        Events
+      </a>
+      <div class="sidebar-label">Account</div>
+      <a href="index.html" class="sidebar-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        Home
+      </a>
+      <div class="sidebar-logout">
+        <a href="#" data-action="logout" class="sidebar-link" style="color:#f87171;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+          Logout
+        </a>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+
+      <div class="page-header">
+        <div>
+          <h1 class="page-title">All Events</h1>
+          <p class="page-subtitle">Browse available events and book your spot. Slots update in real time.</p>
+        </div>
+        <button class="btn btn-primary" id="openAddEventModal">+ Create Event</button>
+      </div>
+
+      <!-- Search / Filter bar -->
+      <div class="events-toolbar">
+        <input type="text" id="searchInput" placeholder="🔍  Search events by name, venue or city…" class="events-search">
+        <div class="events-filter-group">
+          <button class="filter-btn active" data-filter="all">All</button>
+          <button class="filter-btn" data-filter="available">Available</button>
+          <button class="filter-btn" data-filter="soldout">Sold Out</button>
+        </div>
+      </div>
+
+      <!-- Stats bar -->
+      <div class="events-stats-bar" id="events-stats-bar" style="display:none;">
+        <span id="stat-total">0 events</span>
+        <span id="stat-available" style="color:var(--success);">0 available</span>
+        <span id="stat-soldout" style="color:var(--error);">0 sold out</span>
+      </div>
+
+      <!-- Events Grid -->
+      <div class="events-grid" id="events-container">
+        <div class="loading-spinner">
+          <div class="spinner"></div>
+          <p>Loading events…</p>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <!-- Modal Overlay -->
+  <div class="modal-overlay" id="modal-overlay"></div>
+
+  <!-- ═══════════ Add Event Modal ═══════════ -->
+  <div class="modal modal-xl" id="addEventModal">
+    <div class="modal-header">
+      <h3>✨ Create New Event</h3>
+      <button class="modal-close" id="closeModal" type="button">✕</button>
+    </div>
+
+    <form id="addEventForm" novalidate>
+
+      
+      <!-- Two-column grid -->
+      <div class="form-grid">
+
+        <!-- LEFT: Event Details -->
+        <div>
+          <div class="form-section-label">📋 Event Details</div>
+
+          <div class="form-group">
+            <label for="eventName">Event Name *</label>
+            <input type="text" id="eventName" placeholder="e.g. National Hackathon 2025" required>
+          </div>
+
+          <div class="form-group">
+            <label for="eventDescription">Description</label>
+            <textarea id="eventDescription" placeholder="What is this event about? Who should attend?" rows="3"></textarea>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="eventDate">Date *</label>
+              <input type="date" id="eventDate" required>
+            </div>
+            <div class="form-group">
+              <label for="eventTime">Time</label>
+              <input type="time" id="eventTime">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="totalSlots">Total Seats / Slots *</label>
+            <input type="number" id="totalSlots" min="1" max="10000" placeholder="e.g. 100" required>
+            <span class="field-hint">Maximum number of attendees that can register.</span>
+          </div>
+        </div>
+
+        <!-- RIGHT: Venue & College -->
+        <div>
+          <div class="form-section-label">🏛️ Venue Details</div>
+
+          <div class="form-group">
+            <label for="venueName">Venue / Hall Name</label>
+            <input type="text" id="venueName" placeholder="e.g. Main Auditorium, Block A">
+          </div>
+
+          <div class="form-group">
+            <label for="venueAddress">Street Address</label>
+            <input type="text" id="venueAddress" placeholder="e.g. 123 Main Street">
+          </div>
+
+          <div class="form-group">
+            <label for="city">City</label>
+            <input type="text" id="city" placeholder="e.g. Hyderabad">
+          </div>
+
+          <div class="form-section-label" style="margin-top:1.25rem;">🎓 College / Organisation</div>
+
+          <div class="form-group">
+            <label for="collegeName">College / Organisation Name</label>
+            <input type="text" id="collegeName" placeholder="e.g. JNTU College of Engineering">
+          </div>
+
+          <div class="form-group">
+            <label for="collegeWebsite">College Website (optional)</label>
+            <input type="url" id="collegeWebsite" placeholder="https://college.ac.in">
+          </div>
+
+          <div class="form-section-label" style="margin-top:1.25rem;">📞 Organiser Contact</div>
+
+          <div class="form-group">
+            <label for="organiserName">Organiser Name</label>
+            <input type="text" id="organiserName" placeholder="Full name">
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="organiserEmail">Email</label>
+              <input type="email" id="organiserEmail" placeholder="organiser@email.com">
+            </div>
+            <div class="form-group">
+              <label for="organiserPhone">Phone</label>
+              <input type="tel" id="organiserPhone" placeholder="+91 98765 43210">
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /form-grid -->
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline" id="cancelModal">Cancel</button>
+        <button type="submit" class="btn btn-primary" id="createEventBtn">Create Event</button>
+      </div>
+    </form>
+  </div>
+
+  <script src="js/auth.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
